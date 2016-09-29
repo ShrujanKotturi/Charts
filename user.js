@@ -2,7 +2,7 @@ var connection = require('./sql');
 
 function User() {
 
-    this.all = function (log, res) {
+    this.get = function (res) {
         connection.acquire(function (err, con) {
             var sql = 'SELECT * FROM data';
             console.log("SQL : " + sql);
