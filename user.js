@@ -25,9 +25,9 @@ function User() {
 
     this.post = function (point, res){
         connection.acquire(function (err, con) {
-            var sql = 'update data set ? where id = ?' + [point, point.id];
+            var sql = 'update data set cost = ?, sales = ? where id = ?' + [point.cost, point.sales, point.id];
             console.log("SQL : " + sql);
-            con.query(sql, function (err, result) {
+            con.query('update data set cost = ?, sales = ? where id = ?', [point.cost, point.sales, point.id] , function (err, result) {
                 con.release();
                 if(err){
                     res.send({'status':'Error', 'message' : 'Unable to store new value'});
