@@ -22,6 +22,27 @@ function User() {
 
         });
     };
+
+    this.post = function (data, res){
+        connection.acquire(function (err, con) {
+            var sql = 'update data set ? where id = ?' + [data, data.id];
+            console.log("SQL : " + sql);
+            con.query(sql, function (err, result) {
+                con.release();
+                if(err){
+                    res.send({'status':'Error', 'message' : 'Unable to store new value'});
+                    return;
+                }
+                if(result.length != 0){
+                    res.send({'status' : 'Success'});
+                }
+                else{
+                    res.send({'status' : 'No Result'});
+                }
+            });
+
+        });
+    };
 }
 module.exports = new User();
 

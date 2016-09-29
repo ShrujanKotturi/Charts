@@ -5,6 +5,10 @@ module.exports = {
         app.get('/all/', function (req, res) {
             user.get(res);
         });
+
+        app.post('/update/', function (req, res){
+           user.post(req.body, res);
+        });
     }
 };
 
