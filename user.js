@@ -31,6 +31,7 @@ function User() {
                 con.release();
                 if(err){
                     res.send({'status':'Error', 'message' : 'Unable to store new value'});
+                    console.error(err);
                     return;
                 }
                 if(result.length != 0){
